@@ -48,7 +48,7 @@ Kampung.ai aggregates data from official Singapore government APIs:
 | **[URA Data Service](https://www.ura.gov.sg/maps/api/)** | Private property transaction data (condos, apartments, landed). Developer account required. | Application-based access key |
 | **[OneMap API](https://www.onemap.gov.sg/docs/)** | Singapore Land Authority geospatial data — MRT stations, schools, amenities, and postal code lookup. | Free with registration |
 
-> **Note:** This app currently uses mock data for demonstration. See [Setup](#setup) for instructions on connecting real API keys.
+> **URA API Integration:** The app now features a live integration with the URA Data Service API for private property transactions. When an access key is configured, real transaction data is fetched from the official URA API with automatic fallback to mock data if the API is unavailable. See [Setup](#setup) for configuration instructions.
 
 ---
 
@@ -84,6 +84,8 @@ Scan the QR code with **Expo Go** (iOS/Android) or press `a` for Android emulato
 For production use, obtain the following credentials and add them to `.env`:
 
 1. **URA Access Key** — Register at [URA Data Service Portal](https://www.ura.gov.sg/maps/api/)
+   - Once set, the app automatically uses the live URA API for private property transactions
+   - Falls back to mock data if the API is unreachable or returns errors
 2. **data.gov.sg API Key** — Sign up at [data.gov.sg](https://data.gov.sg/developer)
 3. **OneMap Credentials** — Register at [OneMap API](https://www.onemap.gov.sg/docs/)
 
@@ -106,7 +108,9 @@ kampung-ai/
 │   ├── services/
 │   │   ├── types.ts         # Shared TypeScript types
 │   │   ├── mockData.ts      # Real transaction mock data
-│   │   ├── uraApi.ts        # Mock URA API service
+│   │   ├── uraConfig.ts     # URA API configuration & district mappings
+│   │   ├── uraApiReal.ts    # Real URA API client (token, batch queries, encoding)
+│   │   ├── uraApi.ts        # URA service adapter (real API + mock fallback)
 │   │   └── hdbApi.ts        # HDB resale data service
 │   └── utils/
 │       └── colors.ts        # SG-inspired color palette
@@ -121,7 +125,9 @@ kampung-ai/
 
 ## 🧪 Roadmap
 
-- [ ] Real API integration (URA, data.gov.sg, OneMap)
+- [x] Real API integration (URA Data Service with live data + mock fallback)
+- [ ] OneMap API integration (MRT, schools, geolocation)
+- [ ] data.gov.sg HDB resale data live integration
 - [ ] Property map with MRT overlay
 - [ ] Saved valuations & favorites
 - [ ] Mortgage calculator
