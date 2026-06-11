@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Kampung.ai",
+    "slug": "kampung-ai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1B4987"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kampungai.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1B4987"
+      },
+      "package": "com.kampungai.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Kampung.ai to use your location to find nearby properties and MRT stations.",
+          "locationWhenInUsePermission": "Allow Kampung.ai to use your location to find nearby properties and MRT stations."
+        }
+      ]
+    ]
+  }
+}
